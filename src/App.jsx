@@ -17,10 +17,15 @@ import {
 } from "./components/ui/enabled";
 import { useRef, useState } from "react";
 import { Counter, CounterCollection } from "./components/ui/counter";
+import {
+  ColorChangerCollection,
+  ColorChanger,
+} from "./components/ui/colorChanger";
 
 function App() {
   const [enabled, setEnabled] = useState(false);
   const [counter, setCounter] = useState(0);
+  const [color, setColor] = useState(ColorChanger());
   const buttonRef = useRef(null);
   const handleClick = () => {
     console.log("Main button clicked!", buttonRef.current?.textContent);
@@ -67,6 +72,21 @@ function App() {
             </MainButton>
           </ButtonCollection>
         </CounterCollection>
+      </Component>
+      {/* Color Changer */}
+      <Component>
+        <ComponentTitle>Color Changer</ComponentTitle>
+        <ComponentDescription>This is a color changer</ComponentDescription>
+        <ColorChangerCollection>
+          <ButtonCollection>
+            <MainButton
+              style={{ backgroundColor: color }}
+              onClick={() => setColor(ColorChanger())}
+            >
+              Change Color
+            </MainButton>
+          </ButtonCollection>
+        </ColorChangerCollection>
       </Component>
     </ComponentsLab>
   );

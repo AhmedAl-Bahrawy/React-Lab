@@ -45,12 +45,13 @@ react-learning-lab/
 - [x] Button Collection with forwardRef
 - [x] Basic useRef implementation
 - [x] Check Enabled State (useState)
+- [x] Counter with +/- buttons
 
 ### 🚧 In Progress
-- [ ] Counter with +/- buttons
+- [ ] Color-changing button (onClick)
 
 ### 📝 Planned Components
-- [ ] Color-changing button (onClick)
+
 
 #### **Interactivity & State**
 
