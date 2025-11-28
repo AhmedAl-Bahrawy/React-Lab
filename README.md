@@ -48,15 +48,17 @@ react-learning-lab/
 - [x] Counter with +/- buttons
 - [x] Color-changing button (onClick)
 - [x] Double-click counter (state snapshots)
+- [x] Rapid increment button (state queueing)
 
 ### 🚧 In Progress
 
+
 ### 📝 Planned Components
-- [ ] Rapid increment button (state queueing)
+- [ ] User profile form (object state)
+
 
 #### **Interactivity & State**
 
-- [ ] User profile form (object state)
 - [ ] Add/remove list items (array state)
 
 #### **Managing State (Advanced)**
