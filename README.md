@@ -46,17 +46,16 @@ react-learning-lab/
 - [x] Basic useRef implementation
 - [x] Check Enabled State (useState)
 - [x] Counter with +/- buttons
+- [x] Color-changing button (onClick)
+- [x] Double-click counter (state snapshots)
 
 ### 🚧 In Progress
-- [ ] Color-changing button (onClick)
 
 ### 📝 Planned Components
-
+- [ ] Rapid increment button (state queueing)
 
 #### **Interactivity & State**
 
-- [ ] Double-click counter (state snapshots)
-- [ ] Rapid increment button (state queueing)
 - [ ] User profile form (object state)
 - [ ] Add/remove list items (array state)
 

@@ -30,6 +30,13 @@ function App() {
   const handleClick = () => {
     console.log("Main button clicked!", buttonRef.current?.textContent);
   };
+  const handleTripleAdd = () => {
+    setCounter(counter + 1);
+    setCounter(counter + 1);
+    setCounter(counter + 1);
+    setCounter((prev) => prev + 1);
+    setCounter((prev) => prev + 1);
+  };
 
   return (
     <ComponentsLab>
@@ -87,6 +94,36 @@ function App() {
             </MainButton>
           </ButtonCollection>
         </ColorChangerCollection>
+      </Component>
+      {/* Double-click counter (state snapshots) */}
+      <Component>
+        <ComponentTitle>Double-click Counter</ComponentTitle>
+        <ComponentDescription>
+          Click the button twice rapidly to increment the counter. Demonstrates
+          handling state snapshots on double-click events.
+        </ComponentDescription>
+        <CounterCollection>
+          <Counter counter={counter} />
+          <ButtonCollection>
+            <MainButton
+              ref={buttonRef}
+              onDoubleClick={() => setCounter((prev) => prev + 1)}
+            >
+              Double Click me value is
+            </MainButton>
+          </ButtonCollection>
+        </CounterCollection>
+      </Component>
+      {/*Rapid increment button (state queueing) */}
+      <Component>
+        <ComponentTitle>Rapid Increment Button</ComponentTitle>
+        <ComponentDescription></ComponentDescription>
+        <CounterCollection>
+          <Counter counter={counter} />
+          <ButtonCollection>
+            <MainButton onClick={handleTripleAdd}>Click to add 3</MainButton>
+          </ButtonCollection>
+        </CounterCollection>
       </Component>
     </ComponentsLab>
   );
