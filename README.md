@@ -23,115 +23,149 @@ This repository serves as a living laboratory for learning and experimenting wit
 react-learning-lab/
 ├── src/
 │   ├── components/
-│   │   ├── ui/                    # Reusable UI components
-│   │   ├── interactivity/         # useState, events, state management
-│   │   ├── advanced-state/        # useReducer, Context API
-│   │   ├── effects/               # useEffect, lifecycle
-│   │   ├── advanced-hooks/        # useRef, useMemo, useCallback, custom hooks
-│   │   ├── performance/           # React.memo, lazy loading, Suspense
-│   │   ├── refs-dom/              # DOM manipulation, forwardRef
-│   │   ├── patterns/              # Modern React patterns
-│   │   ├── router/                # React Router examples
-│   │   └── testing/               # Test examples
+│   │   ├── Button/                # Reusable button component
+│   │   ├── Counter/               # Counter display component
+│   │   ├── Toggle/                # Toggle switch component
+│   │   ├── ColorPicker/           # Color picker component
+│   │   ├── Input/                 # Input field component
+│   │   ├── ComponentsLab.jsx      # Main wrapper component
+│   │   └── index.js               # Component exports
 │   ├── App.jsx                    # Main component lab
-│   └── main.jsx
+│   ├── App.css                    # App styles
+│   └── main.jsx                   # Entry point
 ├── tests/                          # Component tests
 └── README.md
 ```
 
 ## 🧩 Components Checklist
 
-### ✅ Completed
-- [x] Button Collection with forwardRef
-- [x] Basic useRef implementation
-- [x] Check Enabled State (useState)
-- [x] Counter with +/- buttons
-- [x] Color-changing button (onClick)
-- [x] Double-click counter (state snapshots)
-- [x] Rapid increment button (state queueing)
-
-### 🚧 In Progress
-
-
-### 📝 Planned Components
-- [ ] User profile form (object state)
-
+### ✅ Completed (7/70+)
 
 #### **Interactivity & State**
+- [x] Button with forwardRef (onClick, variants)
+- [x] Toggle Switch (useState)
+- [x] Counter with +/- buttons (useState)
+- [x] Color-changing button (onClick, random colors)
+- [x] Double-click counter (state snapshots)
+- [x] Rapid increment button (state batching/queueing)
+- [x] User profile form (object state)
 
+### 📝 Planned Components (63+)
+
+#### **Interactivity & State**
 - [ ] Add/remove list items (array state)
+- [ ] Filtered search list
+- [ ] Form with validation
+- [ ] Multi-select checkboxes
 
 #### **Managing State (Advanced)**
-- [ ] Todo list (useReducer)
+- [ ] Todo list with useReducer
 - [ ] Theme switcher (Context API)
 - [ ] Shared total calculator (lifting state)
 - [ ] Parent-child counter sync
 - [ ] Tab switcher with state preservation
 - [ ] Shopping cart (reducer + actions)
 - [ ] Multi-step form (reducer + context)
+- [ ] Undo/Redo functionality
+- [ ] Global notification system
 
 #### **Effects & Lifecycle**
 - [ ] Real-time clock display
-- [ ] Search box with API calls
+- [ ] Search box with debounced API calls
 - [ ] Chat send vs auto-save
 - [ ] Auto-dismiss notification
 - [ ] Mount/unmount logger
+- [ ] Window resize listener
+- [ ] Scroll position tracker
+- [ ] Data fetching with loading states
+- [ ] Cleanup on unmount demo
 
 #### **Advanced Hooks**
 - [ ] Focus input on button click (useRef)
 - [ ] Factorial calculator (useMemo)
 - [ ] Optimized child button (useCallback)
 - [ ] useLocalStorage custom hook
+- [ ] useDebounce custom hook
+- [ ] useToggle custom hook
+- [ ] usePrevious custom hook
 - [ ] Custom input with imperative methods
 - [ ] Positioned tooltip (useLayoutEffect)
 - [ ] Large list filter (useTransition)
 - [ ] Search with useDeferredValue
+- [ ] useId for accessibility
 
 #### **Performance Optimization**
-- [ ] Memoized child component
+- [ ] Memoized child component (React.memo)
 - [ ] Virtualized list concept
 - [ ] Profiler measurements
 - [ ] Lazy-loaded heavy component
 - [ ] Suspense loading spinner
 - [ ] Code-split routes
 - [ ] Render optimization demo
+- [ ] Expensive calculation optimization
+- [ ] List key optimization
 
 #### **Refs & DOM Manipulation**
 - [ ] Auto-scroll to bottom
 - [ ] Focusable custom input
 - [ ] Video player controls
 - [ ] flushSync demonstration
+- [ ] Measuring DOM elements
+- [ ] Canvas drawing
+- [ ] Third-party library integration
 
 #### **Escape Hatches**
 - [ ] Interval counter (ref without render)
 - [ ] Filtered list without effect
 - [ ] useWindowSize hook
 - [ ] WebSocket manager
+- [ ] External store subscription
 
 #### **React Router**
 - [ ] 3-page navigation
 - [ ] Nested dashboard routes
 - [ ] Dynamic user profile loading
 - [ ] Form with navigation
+- [ ] Protected routes
+- [ ] 404 page
+- [ ] Route parameters
+- [ ] Query string handling
 
 #### **Modern React Patterns**
+- [ ] Compound components
+- [ ] Render props pattern
+- [ ] Higher-Order Components (HOC)
 - [ ] Static blog renderer
 - [ ] use() hook demo
 - [ ] Concurrent rendering
 - [ ] Automatic batching example
 - [ ] Smooth tab transitions
+- [ ] Error boundaries
+- [ ] Portal example
+
+#### **Forms & Validation**
+- [ ] Controlled vs uncontrolled inputs
+- [ ] Form with Formik
+- [ ] Form with React Hook Form
+- [ ] Custom validation
+- [ ] File upload
+- [ ] Multi-step wizard
 
 #### **Testing**
 - [ ] Checkbox component tests
 - [ ] Form interaction tests
 - [ ] Card snapshot tests
 - [ ] Async loading tests
+- [ ] Custom hook tests
+- [ ] Integration tests
 
 #### **TypeScript**
 - [ ] Typed checkbox
 - [ ] Button with prop types
 - [ ] Typed hooks example
 - [ ] Generic component
+- [ ] Typed context
+- [ ] Typed reducer
 
 ## 🚀 Getting Started
 
@@ -177,9 +211,17 @@ npm run build
 ## 📈 Progress Tracking
 
 - **Total Components**: 70+
-- **Completed**: 2
-- **In Progress**: 1
-- **Remaining**: 67+
+- **Completed**: 7
+- **In Progress**: 0
+- **Remaining**: 63+
+- **Completion**: 10%
+
+## 🎯 Current Focus
+
+**Next Up:**
+1. Add/remove list items (array state manipulation)
+2. Todo list with useReducer
+3. Real-time clock with useEffect
 
 ## 🤝 Contributing
 
@@ -193,4 +235,4 @@ MIT License - Feel free to use this structure for your own learning.
 
 **Happy Learning! 🎉**
 
-*Last Updated: November 2025*
+*Last Updated: November 29, 2025*

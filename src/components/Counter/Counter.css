@@ -1,0 +1,38 @@
+/* Counter Display Styles */
+.counter-display {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 30px 50px;
+    border-radius: 20px;
+    font-size: 48px;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0 8px 24px rgba(102, 126, 234, 0.4);
+    margin: 20px 0;
+    min-width: 150px;
+    transition: all 0.3s ease;
+}
+
+.counter-value {
+    display: inline-block;
+    animation: counterPop 0.3s ease;
+}
+
+@keyframes counterPop {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.counter-display:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 32px rgba(102, 126, 234, 0.5);
+}

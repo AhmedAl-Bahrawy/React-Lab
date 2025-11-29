@@ -1,42 +1,27 @@
 import "./App.css";
-import {
-  ButtonCollection,
-  MainButton,
-  UnderText,
-} from "./components/ui/button";
+import { Button } from "./components";
 import {
   ComponentsLab,
   Component,
   ComponentTitle,
   ComponentDescription,
-} from "./components/componentsLab";
-import {
-  EnabledCollection,
-  EnabledCheckbox,
-  EnabledLabel,
-} from "./components/ui/enabled";
+} from "./components";
+import { Toggle } from "./components";
 import { useRef, useState } from "react";
-import { Counter, CounterCollection } from "./components/ui/counter";
-import {
-  ColorChangerCollection,
-  ColorChanger,
-} from "./components/ui/colorChanger";
-import {
-  ProfileFormCollection,
-  Input,
-  ValueView,
-} from "./components/ui/userProfileForm";
+import { Counter } from "./components";
+import { ColorPicker, getRandomColor } from "./components";
+import { Input, ValueDisplay } from "./components";
 
 function App() {
   const [enabled, setEnabled] = useState(false);
   const [counter, setCounter] = useState(0);
-  const [color, setColor] = useState(ColorChanger());
+  const [color, setColor] = useState(getRandomColor());
   const buttonRef = useRef(null);
-  
+
   const handleClick = () => {
     console.log("Main button clicked!", buttonRef.current?.textContent);
   };
-  
+
   const handleTripleAdd = () => {
     setCounter(counter + 1);
     setCounter(counter + 1);
@@ -44,7 +29,7 @@ function App() {
     setCounter((prev) => prev + 1);
     setCounter((prev) => prev + 1);
   };
-  
+
   const [profile, setProfile] = useState({
     name: "John Doe",
     email: "john@example.com",
@@ -56,96 +41,100 @@ function App() {
       <header className="app-header">
         <h1 className="app-title">React Components Lab</h1>
         <p className="app-subtitle">
-          Explore interactive React components with modern design and smooth animations
+          Explore interactive React components with modern design and smooth
+          animations
         </p>
       </header>
-      
+
       <ComponentsLab>
-        {/* Button Collection */}
+        {/* Button Component Demo */}
         <Component>
           <ComponentTitle>Interactive Buttons</ComponentTitle>
           <ComponentDescription>
-            Beautiful buttons with hover effects, animations, and forwardRef implementation for direct DOM access.
+            Beautiful buttons with hover effects, animations, and forwardRef
+            implementation for direct DOM access.
           </ComponentDescription>
           <div className="component-demo">
-            <ButtonCollection>
-              <MainButton ref={buttonRef} onClick={handleClick} className="btn btn-primary">
+            <div className="button-group">
+              <Button
+                ref={buttonRef}
+                onClick={handleClick}
+                variant="primary"
+              >
                 Click me ✨
-              </MainButton>
-              <MainButton onClick={() => alert('Secondary action!')} className="btn btn-secondary">
+              </Button>
+              <Button
+                onClick={() => alert("Secondary action!")}
+                variant="secondary"
+              >
                 Secondary
-              </MainButton>
-            </ButtonCollection>
-            <UnderText>Try clicking the buttons to see console logs and interactions</UnderText>
+              </Button>
+              <Button variant="success">Success</Button>
+              <Button variant="warning">Warning</Button>
+            </div>
+            <p className="under-text">
+              Try clicking the buttons to see console logs and interactions
+            </p>
           </div>
         </Component>
 
-        {/* Check Enabled State */}
+        {/* Toggle Component Demo */}
         <Component>
           <ComponentTitle>Toggle Switch</ComponentTitle>
           <ComponentDescription>
-            Interactive checkbox with dynamic state management and visual feedback.
+            Interactive toggle switch with dynamic state management and visual
+            feedback.
           </ComponentDescription>
           <div className="component-demo">
-            <EnabledCollection>
-              <EnabledCheckbox enabled={enabled} setEnabled={setEnabled} />
-              <EnabledLabel enabled={enabled} />
-            </EnabledCollection>
+            <Toggle
+              enabled={enabled}
+              onChange={setEnabled}
+              label={enabled ? "Enabled ✓" : "Disabled ✗"}
+            />
           </div>
         </Component>
 
-        {/* Counter */}
+        {/* Counter Component Demo */}
         <Component>
           <ComponentTitle>Counter Controls</ComponentTitle>
           <ComponentDescription>
-            State management demonstration with increment and decrement functionality.
+            State management demonstration with increment and decrement
+            functionality.
           </ComponentDescription>
           <div className="component-demo">
-            <CounterCollection>
-              <Counter counter={counter} />
-              <ButtonCollection>
-                <MainButton 
-                  onClick={() => setCounter((prev) => prev + 1)}
-                  className="btn btn-success"
-                >
-                  + Increment
-                </MainButton>
-                <MainButton 
-                  onClick={() => setCounter((prev) => prev - 1)}
-                  className="btn btn-warning"
-                  disabled={counter <= 0}
-                >
-                  - Decrement
-                </MainButton>
-                <MainButton 
-                  onClick={() => setCounter(0)}
-                  className="btn btn-secondary"
-                >
-                  Reset
-                </MainButton>
-              </ButtonCollection>
-            </CounterCollection>
+            <Counter value={counter} />
+            <div className="button-group">
+              <Button
+                onClick={() => setCounter((prev) => prev + 1)}
+                variant="success"
+              >
+                + Increment
+              </Button>
+              <Button
+                onClick={() => setCounter((prev) => prev - 1)}
+                variant="warning"
+                disabled={counter <= 0}
+              >
+                - Decrement
+              </Button>
+              <Button
+                onClick={() => setCounter(0)}
+                variant="secondary"
+              >
+                Reset
+              </Button>
+            </div>
           </div>
         </Component>
 
-        {/* Color Changer */}
+        {/* ColorPicker Component Demo */}
         <Component>
           <ComponentTitle>Dynamic Color Changer</ComponentTitle>
           <ComponentDescription>
             Random color generation with smooth transitions and visual effects.
           </ComponentDescription>
           <div className="component-demo">
-            <ColorChangerCollection>
-              <ButtonCollection>
-                <MainButton
-                  style={{ backgroundColor: color, color: 'white' }}
-                  onClick={() => setColor(ColorChanger())}
-                  className="color-changer-btn"
-                >
-                  Change Color
-                </MainButton>
-              </ButtonCollection>
-            </ColorChangerCollection>
+            <ColorPicker color={color} onColorChange={setColor} />
           </div>
         </Component>
 
@@ -153,21 +142,19 @@ function App() {
         <Component>
           <ComponentTitle>Double-Click Counter</ComponentTitle>
           <ComponentDescription>
-            Advanced event handling with double-click detection and state snapshots demonstration.
+            Advanced event handling with double-click detection and state
+            snapshots demonstration.
           </ComponentDescription>
           <div className="component-demo">
-            <CounterCollection>
-              <Counter counter={counter} />
-              <ButtonCollection>
-                <MainButton
-                  ref={buttonRef}
-                  onDoubleClick={() => setCounter((prev) => prev + 1)}
-                  className="btn btn-primary pulse"
-                >
-                  Double-Click Me 🖱️
-                </MainButton>
-              </ButtonCollection>
-            </CounterCollection>
+            <Counter value={counter} />
+            <Button
+              ref={buttonRef}
+              onDoubleClick={() => setCounter((prev) => prev + 1)}
+              variant="primary"
+              className="pulse"
+            >
+              Double-Click Me 🖱️
+            </Button>
           </div>
         </Component>
 
@@ -175,17 +162,14 @@ function App() {
         <Component>
           <ComponentTitle>Batch State Updates</ComponentTitle>
           <ComponentDescription>
-            Demonstrates React's state batching behavior with rapid successive updates.
+            Demonstrates React's state batching behavior with rapid successive
+            updates.
           </ComponentDescription>
           <div className="component-demo">
-            <CounterCollection>
-              <Counter counter={counter} />
-              <ButtonCollection>
-                <MainButton onClick={handleTripleAdd} className="btn btn-primary">
-                  Add +5 Rapidly 🚀
-                </MainButton>
-              </ButtonCollection>
-            </CounterCollection>
+            <Counter value={counter} />
+            <Button onClick={handleTripleAdd} variant="primary">
+              Add +5 Rapidly 🚀
+            </Button>
           </div>
         </Component>
 
@@ -193,27 +177,32 @@ function App() {
         <Component>
           <ComponentTitle>User Profile Form</ComponentTitle>
           <ComponentDescription>
-            Object state management with real-time updates and form validation patterns.
+            Object state management with real-time updates and form validation
+            patterns.
           </ComponentDescription>
           <div className="component-demo">
-            <ProfileFormCollection>
-              {Object.entries(profile).map(([key, value], index) => (
+            <div className="form-container">
+              {Object.entries(profile).map(([key, value]) => (
                 <div key={key} className="form-field">
                   <Input
-                    type={key === 'age' ? 'number' : key === 'email' ? 'email' : 'text'}
+                    type={
+                      key === "age"
+                        ? "number"
+                        : key === "email"
+                          ? "email"
+                          : "text"
+                    }
                     value={value}
                     onChange={(e) =>
                       setProfile((prev) => ({ ...prev, [key]: e.target.value }))
                     }
-                    placeholder={key.charAt(0).toUpperCase() + key.slice(1)}
-                    className="form-input"
+                    label={key.charAt(0).toUpperCase() + key.slice(1)}
+                    placeholder={`Enter your ${key}`}
                   />
-                  <ValueView className="value-view">
-                    <strong>{key}:</strong> {profile[key] || 'Not provided'}
-                  </ValueView>
+                  <ValueDisplay label={key} value={profile[key]} />
                 </div>
               ))}
-            </ProfileFormCollection>
+            </div>
           </div>
         </Component>
       </ComponentsLab>
