@@ -1,29 +1,21 @@
 export const ComponentsLab = ({ children }) => {
   return (
-    <div style={{ display: "flex", flexDirection: "column" }}>{children}</div>
+    <div className="components-lab">{children}</div>
   );
 };
 
 export const Component = ({ children }) => {
   return (
-    <>
-      <div style={{ marginBottom: "20px" }}>{children}</div>
-      <hr
-        style={{
-          width: "100%",
-          height: "1px",
-          backgroundColor: "black",
-          margin: "0 auto",
-        }}
-      ></hr>
-    </>
+    <div className="component-card fade-in-up">
+      {children}
+    </div>
   );
 };
 
 export const ComponentTitle = ({ children }) => {
-  return <h2>{children}</h2>;
+  return <h2 className="component-title">{children}</h2>;
 };
 
 export const ComponentDescription = ({ children }) => {
-  return <p>{children}</p>;
+  return <p className="component-description">{children}</p>;
 };

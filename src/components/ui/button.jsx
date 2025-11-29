@@ -3,9 +3,9 @@ import React, { forwardRef } from "react";
 //
 // 🔹 MainButton (with forwardRef)
 //
-export const MainButton = forwardRef(({ children, ...props }, ref) => {
+export const MainButton = forwardRef(({ children, className, ...props }, ref) => {
   return (
-    <button ref={ref} {...props}>
+    <button ref={ref} className={className} {...props}>
       {children}
     </button>
   );
@@ -14,18 +14,18 @@ export const MainButton = forwardRef(({ children, ...props }, ref) => {
 //
 // 🔹 UnderText (regular component)
 //
-export const UnderText = ({ children }) => {
-  return <p style={{ marginTop: "8px" }}>{children}</p>;
+export const UnderText = ({ children, className }) => {
+  return <p className={`under-text ${className || ''}`}>{children}</p>;
 };
 
 //
 // 🔹 ButtonCollection (parent wrapper)
 //
-export const ButtonCollection = forwardRef(({ children }, ref) => {
+export const ButtonCollection = forwardRef(({ children, vertical = false, className }, ref) => {
   return (
     <div
       ref={ref}
-      style={{ display: "flex", flexDirection: "row", gap: "8px" }}
+      className={`button-collection ${vertical ? 'vertical' : ''} ${className || ''}`}
     >
       {children}
     </div>

@@ -99,9 +99,11 @@ const colors = [
   "#1565C0",
 ];
 
-export const ColorChangerCollection = ({ children, ...props }) => {
+export const ColorChangerCollection = ({ children, className, ...props }) => {
   return (
-    <div style={{ display: "flex", flexDirection: "column" }}>{children}</div>
+    <div className={`counter-collection ${className || ''}`} {...props}>
+      {children}
+    </div>
   );
 };
 

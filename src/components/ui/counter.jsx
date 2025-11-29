@@ -1,13 +1,15 @@
-export const CounterCollection = ({ children, ...props }) => {
+export const CounterCollection = ({ children, className, ...props }) => {
   return (
-    <div style={{ display: "flex", flexDirection: "column" }}>{children}</div>
+    <div className={`counter-collection ${className || ''}`} {...props}>
+      {children}
+    </div>
   );
 };
 
-export const Counter = ({ counter, ...props }) => {
+export const Counter = ({ counter, className, ...props }) => {
   return (
-    <>
-      <p>{counter}</p>
-    </>
+    <div className={`counter-display ${className || ''}`} {...props}>
+      {counter}
+    </div>
   );
 };
