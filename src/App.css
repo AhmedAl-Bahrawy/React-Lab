@@ -62,6 +62,62 @@
   font-style: italic;
 }
 
+/* List Item Styles */
+.list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 16px 20px;
+  background: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.15) 0%,
+      rgba(255, 255, 255, 0.08) 100%);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 12px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: slideIn 0.3s ease-out;
+  font-size: 16px;
+  font-weight: 500;
+  color: #2d3748;
+}
+
+.list-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.2) 0%,
+      rgba(255, 255, 255, 0.12) 100%);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.list-item:active {
+  transform: translateY(0);
+}
+
+/* Removing animation */
+.list-item.removing {
+  animation: slideOut 0.3s ease-out forwards;
+}
+
+.remove-button {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.remove-button:hover {
+  transform: translateY(-2px);
+}
+
+.remove-button:active {
+  transform: translateY(0);
+}
+
+.remove-button.removing {
+  animation: slideOutButton 0.3s ease-out forwards;
+}
+
 /* Animations */
 @keyframes fadeIn {
   from {
@@ -72,6 +128,74 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+    max-height: 100px;
+    margin-bottom: 12px;
+  }
+
+  50% {
+    opacity: 0.5;
+    transform: translateX(30px);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(50px);
+    max-height: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+@keyframes slideOutButton {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+    max-height: 100px;
+    margin-bottom: 12px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  50% {
+    content: "";
+    opacity: 0.5;
+    transform: translateX(30px);
+    margin-bottom: 6px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 6px;
+    padding-right: 6px;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(50px);
+    max-height: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 
@@ -92,5 +216,15 @@
 
   .button-group .btn {
     width: 100%;
+  }
+
+  .list-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .list-item .btn {
+    align-self: flex-end;
   }
 }

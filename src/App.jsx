@@ -17,6 +17,24 @@ function App() {
   const [counter, setCounter] = useState(0);
   const [color, setColor] = useState(getRandomColor());
   const buttonRef = useRef(null);
+  const [text, setText] = useState("");
+  const [items, setItems] = useState([]);
+  const [removingItems, setRemovingItems] = useState(new Set());
+
+  const handleRemoveItem = (index) => {
+    // Add item to removing set to trigger animation
+    setRemovingItems((prev) => new Set(prev).add(index));
+
+    // Wait for animation to complete before removing from state
+    setTimeout(() => {
+      setItems((prev) => prev.filter((_, i) => i !== index));
+      setRemovingItems((prev) => {
+        const newSet = new Set(prev);
+        newSet.delete(index);
+        return newSet;
+      });
+    }, 300); // Match the animation duration in CSS
+  };
 
   const handleClick = () => {
     console.log("Main button clicked!", buttonRef.current?.textContent);
@@ -56,11 +74,7 @@ function App() {
           </ComponentDescription>
           <div className="component-demo">
             <div className="button-group">
-              <Button
-                ref={buttonRef}
-                onClick={handleClick}
-                variant="primary"
-              >
+              <Button ref={buttonRef} onClick={handleClick} variant="primary">
                 Click me ✨
               </Button>
               <Button
@@ -117,10 +131,7 @@ function App() {
               >
                 - Decrement
               </Button>
-              <Button
-                onClick={() => setCounter(0)}
-                variant="secondary"
-              >
+              <Button onClick={() => setCounter(0)} variant="secondary">
                 Reset
               </Button>
             </div>
@@ -203,6 +214,47 @@ function App() {
                 </div>
               ))}
             </div>
+          </div>
+        </Component>
+
+        {/*Add/remove list items (array state)*/}
+        <Component>
+          <ComponentTitle>Add/Remove List Items</ComponentTitle>
+          <ComponentDescription>
+            Dynamic list management with array state operations - add new items,
+            remove individual entries, and see smooth animations in action.
+          </ComponentDescription>
+          <div className="component-demo">
+            {items.map((item, index) => (
+              <div
+                key={index}
+                className={`list-item ${removingItems.has(index) ? 'removing' : ''}`}
+              >
+                {item}
+                <Button
+                  onClick={() => handleRemoveItem(index)}
+                  variant="danger"
+                  className={`remove-button ${removingItems.has(index) ? 'removing' : ''}`}
+                >
+                  Remove
+                </Button>
+              </div>
+            ))}
+            <Input
+              type="text"
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+              placeholder="Enter a new item"
+            />
+            <Button
+              onClick={() => {
+                setItems((prev) => [...prev, text]);
+                setText("");
+              }}
+              variant="primary"
+            >
+              Add Item
+            </Button>
           </div>
         </Component>
       </ComponentsLab>
