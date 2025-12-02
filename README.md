@@ -50,14 +50,13 @@ react-learning-lab/
 - [x] Rapid increment button (state batching/queueing)
 - [x] User profile form (object state)
 - [x] Add/remove list items (array state)
+- [x] Filtered search list
+- [x] Form with validation
 
 ### 📝 Planned Components (63+)
 
 
 #### **Interactivity & State**
-
-- [ ] Filtered search list
-- [ ] Form with validation
 - [ ] Multi-select checkboxes
 
 #### **Managing State (Advanced)**

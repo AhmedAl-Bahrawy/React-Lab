@@ -20,6 +20,52 @@ function App() {
   const [text, setText] = useState("");
   const [items, setItems] = useState([]);
   const [removingItems, setRemovingItems] = useState(new Set());
+  const [search, setSearch] = useState("");
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+  const [errors, setErrors] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+
+  const handleFormChange = (e) => {
+    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+  const validateForm = (form) => {
+    const errors = {};
+    if (!form.name) {
+      errors.name = "Name is required";
+    }
+    if (!form.email) {
+      errors.email = "Email is required";
+    }
+    if (!form.password) {
+      errors.password = "Password is required";
+    }
+    if (form.password.length < 8) {
+      errors.password = "Password must be at least 8 characters long";
+    }
+    return errors;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const validationErrors = validateForm(form);
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+    } else {
+      setErrors(validationErrors);
+      console.log(form);
+    }
+  };
+
+  const filtered = items.filter((item) =>
+    item.toLowerCase().includes(search.toLowerCase())
+  );
 
   const handleRemoveItem = (index) => {
     // Add item to removing set to trigger animation
@@ -200,8 +246,8 @@ function App() {
                       key === "age"
                         ? "number"
                         : key === "email"
-                          ? "email"
-                          : "text"
+                        ? "email"
+                        : "text"
                     }
                     value={value}
                     onChange={(e) =>
@@ -228,13 +274,17 @@ function App() {
             {items.map((item, index) => (
               <div
                 key={index}
-                className={`list-item ${removingItems.has(index) ? 'removing' : ''}`}
+                className={`list-item ${
+                  removingItems.has(index) ? "removing" : ""
+                }`}
               >
                 {item}
                 <Button
                   onClick={() => handleRemoveItem(index)}
                   variant="danger"
-                  className={`remove-button ${removingItems.has(index) ? 'removing' : ''}`}
+                  className={`remove-button ${
+                    removingItems.has(index) ? "removing" : ""
+                  }`}
                 >
                   Remove
                 </Button>
@@ -255,6 +305,66 @@ function App() {
             >
               Add Item
             </Button>
+          </div>
+        </Component>
+
+        {/* Filtered search list */}
+        <Component>
+          <ComponentTitle>Filtered Search List</ComponentTitle>
+          <ComponentDescription>
+            Dynamic list filtering with search input and state management.
+          </ComponentDescription>
+          <div className="component-demo">
+            <Input
+              type="text"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Search items"
+            />
+            <div className="list-container">
+              {filtered.map((item, index) => (
+                <div key={index} className="list-item">
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
+        </Component>
+
+        {/* Form with validation */}
+        <Component>
+          <ComponentTitle>Form with Validation</ComponentTitle>
+          <ComponentDescription>
+            Form with validation using React Hook Form and Yup.
+          </ComponentDescription>
+          <div className="component-demo">
+            <form onSubmit={handleSubmit}>
+              <Input
+                type="text"
+                value={form.name}
+                name="name"
+                onChange={handleFormChange}
+                placeholder="Name"
+              />
+              {errors.name && <p className="error">{errors.name}</p>}
+              <Input
+                type="email"
+                value={form.email}
+                name="email"
+                onChange={handleFormChange}
+                placeholder="Email"
+              />
+              {errors.email && <p className="error">{errors.email}</p>}
+              <Input
+                type="password"
+                value={form.password}
+                name="password"
+                onChange={handleFormChange}
+                placeholder="Password"
+              />
+              {errors.password && <p className="error">{errors.password}</p>}
+              <Button type="submit">Submit</Button>
+            </form>
           </div>
         </Component>
       </ComponentsLab>
