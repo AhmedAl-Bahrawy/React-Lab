@@ -31,6 +31,7 @@ function App() {
     email: "",
     password: "",
   });
+  const [selected, setSelected] = useState([]);
 
   const handleFormChange = (e) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -93,12 +94,34 @@ function App() {
     setCounter((prev) => prev + 1);
     setCounter((prev) => prev + 1);
   };
+  const toggleOption = (option) => {
+    setSelected((prev) => {
+      if (prev.includes(option)) {
+        return prev.filter((item) => item !== option);
+      }
+      return [...prev, option];
+    });
+  };
 
   const [profile, setProfile] = useState({
     name: "John Doe",
     email: "john@example.com",
     age: "25",
   });
+  const options = [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "React",
+    "Node.js",
+    "Python",
+    "Flask",
+    "Django",
+    "SQL",
+    "NoSQL",
+    "MongoDB",
+    "MySQL",
+  ];
 
   return (
     <div className="app">
@@ -365,6 +388,34 @@ function App() {
               {errors.password && <p className="error">{errors.password}</p>}
               <Button type="submit">Submit</Button>
             </form>
+          </div>
+        </Component>
+
+        {/* Multi-Select Checkboxes */}
+        <Component>
+          <ComponentTitle>Multi-Select Checkboxes</ComponentTitle>
+          <ComponentDescription>
+            Multi-select checkboxes with state management and toggle
+            functionality.
+          </ComponentDescription>
+          <div className="component-demo">
+            <div style={{ display: "flex", flexDirection: "row", gap: "10px" }}>
+              {options.map((option) => (
+                <label
+                  key={option}
+                  style={{ display: "flex", alignItems: "center", gap: "10px" }}
+                >
+                  <input
+                    type="checkbox"
+                    checked={selected.includes(option)}
+                    onChange={() => toggleOption(option)}
+                  />
+                  {option}
+                </label>
+              ))}
+            </div>
+            <h3>Selected:</h3>
+            <pre>{JSON.stringify(selected, null, 2)}</pre>
           </div>
         </Component>
       </ComponentsLab>
