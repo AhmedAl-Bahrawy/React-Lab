@@ -10,3 +10,4 @@ export {
     ComponentTitle,
     ComponentDescription,
 } from './ComponentsLab';
+export { InteractivityAndState } from './InteractivityAndState/InteractivityAndState';
