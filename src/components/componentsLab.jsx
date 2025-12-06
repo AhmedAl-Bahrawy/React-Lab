@@ -31,3 +31,16 @@ export const ComponentTitle = ({ children }) => {
 export const ComponentDescription = ({ children }) => {
   return <p className="component-description">{children}</p>;
 };
+
+/**
+ * SectionTitle
+ * Main section title with separator for grouping related components
+ */
+export const SectionTitle = ({ children }) => {
+  return (
+    <div className="section-title-container">
+      <h1 className="section-title">{children}</h1>
+      <div className="section-separator"></div>
+    </div>
+  );
+};

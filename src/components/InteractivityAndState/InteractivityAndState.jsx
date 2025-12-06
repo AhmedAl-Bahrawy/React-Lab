@@ -8,6 +8,7 @@ import {
     Component,
     ComponentTitle,
     ComponentDescription,
+    SectionTitle,
 } from "../ComponentsLab";
 import "./InteractivityAndState.css";
 
@@ -138,6 +139,8 @@ export const InteractivityAndState = () => {
 
     return (
         <>
+            <SectionTitle>Interactivity & State</SectionTitle>
+
             {/* Button Component Demo */}
             <Component>
                 <ComponentTitle>Interactive Buttons</ComponentTitle>

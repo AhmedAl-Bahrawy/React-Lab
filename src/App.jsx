@@ -4,7 +4,9 @@ import {
   Component,
   ComponentTitle,
   ComponentDescription,
+  SectionTitle,
   InteractivityAndState,
+  ManagingState,
 } from "./components";
 
 function App() {
@@ -22,20 +24,7 @@ function App() {
         {/* #### **Interactivity & State** Section */}
         <InteractivityAndState />
 
-        {/* #### **[Your New Section Name]** Section */}
-        {/* Add your new section components below */}
-
-        {/* Example template for new component:
-        <Component>
-          <ComponentTitle>Your Component Title</ComponentTitle>
-          <ComponentDescription>
-            Description of what this component demonstrates.
-          </ComponentDescription>
-          <div className="component-demo">
-            {/* Your component content here *\/}
-          </div>
-        </Component>
-        */}
+        <ManagingState />
       </ComponentsLab>
     </div>
   );
